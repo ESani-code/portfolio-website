@@ -1,0 +1,471 @@
+/* --- Global Styles & Variables --- */
+
+html {
+    /* Sets the default cursor for the entire page */
+    cursor: url("../cursor/point32.png"), auto;
+}
+
+/* Cursor styling on clickable elements */
+a,
+button,
+.tab-link,
+.gallery-item {
+    cursor: pointer;
+}
+
+/* Font-Faces */
+@font-face {
+    font-family: 'ProductSans';
+    src: url('../fonts/ProductSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProductSansBlack';
+    src: url('../fonts/ProductSans-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Add more @font-face blocks here for each font in your fonts folder */
+
+:root {
+    --primary-bg: #070707;
+    --secondary-bg: #101010;
+    --text-color: #f0f0f0;
+    --accent-color: #ed3838; /* Silver */
+    --hover-color: #ff7a7a;
+    --border-color: #ff1c1c;
+}
+
+body {
+    font-family: 'ProductSans', 'Roboto', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ...existing code... */
+
+/*
+:root {
+    --primary-bg: #1a1a1a;
+    --secondary-bg: #2b2b2b;
+    --text-color: #e0e0e0;
+    --accent-color: #c0c0c0;
+    --hover-color: #ffffff;
+    --border-color: #444;
+}
+*/
+
+/*
+body {
+    font-family: 'CustomFont', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
+*/
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1, h2 {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background: rgba(20, 20, 20, 0.4); /* semi-transparent dark background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.242);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.559);
+    padding: 12px;
+}
+ 
+/* 
+header {
+    background: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+*/
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--hover-color);
+}
+
+header .logo img {
+    height: 48px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--hover-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(to top, rgba(96, 16, 16, 0.5), rgba(9, 9, 9, 0.5));
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 0 10px 38px 2px rgba(18, 8, 8, 0.886);
+    background-position: center;
+    z-index: 1;
+    overflow: hidden; /* Ensure background stays inside hero */
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-80%) translateY(500%) rotate(30deg) scale(3);
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(240, 240, 240, 0.047) 30%, rgba(238, 238, 238, 0.04) 80%, transparent 100%);
+    border-radius: 0 0 0px 0px;
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 2;
+    animation: Lightsweep 12s ease-in-out infinite alternate;
+}
+
+@keyframes Lightsweep {
+    0% {
+        transform: translateX(-80%) translateY(500%) rotate(20deg) scale(2.9);
+    }
+    100% {
+        transform: translateX(0%) translateY(500%) rotate(45deg) scale(3);
+    }
+}
+
+
+.hero-bg .glass-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(16px) brightness(1.2);
+    opacity: 0.7;
+    mix-blend-mode: lighten;
+    animation: floatGlass 12s ease-in-out infinite alternate;
+}
+
+.hero-bg .glass-circle1 {
+    width: 200px;
+    height: 200px;
+    left: 5%;
+    top: 10%;
+    background: radial-gradient(circle at 50% 40%, #4e0303bd 10%, #3d2c2cb0 100%);
+    box-shadow: 0 0 20px #ff1e1e;
+    animation-delay: 0s;
+}
+
+.hero-bg .glass-circle2 {
+    width: 120px;
+    height: 120px;
+    left: 90%;
+    top: 10%;
+    background: radial-gradient(circle at 40% 60%, #9a2020 15%, #221a1a96 80%);
+    animation-delay: 2s;
+}
+
+.hero-bg .glass-circle3 {
+    width: 80px;
+    height: 80px;
+    left: 25%;
+    top: 55%;
+    background: radial-gradient(circle at 50% 50%, #d215158e 40%, #a47b7ba4 100%);
+    animation-delay: 4s;
+}
+
+.hero-bg .glass-circle4 {
+    width: 180px;
+    height: 180px;
+    left: 70%;
+    top: 50%;
+    background: radial-gradient(circle at 60% 40%, #f04b1d 5%, #9059594c 50%);
+    opacity: 0.5;
+    animation-delay: 6s;
+}
+
+@keyframes floatGlass {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-50px) scale(1.20);
+        opacity: 1.0;
+    }
+    100% {
+        transform: translateY(20px) scale(0.97);
+        opacity: 0.7;
+    }
+}
+
+/* Ensure hero content is above the background */
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+
+/*
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(rgba(96, 16, 16, 0.5), rgba(9, 9, 9, 0.5));
+    background-size: cover;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 0 10px 38px 2px rgba(18, 8, 8, 0.886);
+    background-position: center;
+    position: relative;
+    z-index: 1;
+}
+*/
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Work Sections --- */
+.work-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.work-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- About Me Section --- */
+
+#about-me {
+    background-color: #131313; /* Dark blue from image */
+    margin-top: 0px;
+    position: relative;
+    z-index: 0;
+}
+
+.about-me-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Two columns: image and text */
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-me-image img {
+    width: 100%;
+    border-radius: 30px; /* Creates the rounded rectangle */
+    border: 3px solid #c12d2da0;
+    box-shadow: 0 10px 20px rgba(29, 12, 12, 0.244);
+    display: block;
+}
+
+.about-me-content h2 {
+    font-family: 'ProductSansBlack', sans-serif; /* Using your custom font for impact */
+    font-size: 4rem; /* Larger font size for the heading */
+    text-align: left; /* Aligned with the text block */
+    margin-bottom: 1.5rem;
+}
+
+.about-me-content p {
+    font-family: 'Courier New', monospace; /* Monospaced font for the body text */
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.highlight {
+    color: #ff2525; /* Bright pink/red for emphasis */
+    text-decoration: underline wavy;
+    text-decoration-color: #ff2020;
+    text-underline-offset: 5px;
+}
+
+/* --- Tab System Styles --- */
+.about-tabs {
+    margin: 2rem 0 1.5rem;
+    display: flex;
+    gap: 25px;
+}
+
+.tab-link {
+    color: var(--text-color);
+    font-size: 1rem;
+    padding-bottom: 8px;
+    position: relative;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s ease;
+}
+
+.tab-link:hover {
+    color: var(--hover-color);
+}
+
+.tab-link.active {
+    color: var(--hover-color);
+    font-weight: bold;
+}
+
+.tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; /* Aligns with the border-bottom */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff2020; /* Active tab indicator line */
+}
+
+.tab-content {
+    display: none; /* Hide all tabs by default */
+}
+
+.tab-content.active {
+    display: block; /* Show only the active tab */
+}
+
+.tab-content ul {
+    list-style: none;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+}
+
+.tab-content ul li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 20px; /* Space for the vertical line */
+}
+
+.tab-content ul p {
+    margin: 0.2px ;
+    line-height: 1.2;
+    color: var(--text-color);
+
+}
+
+/* Vertical bar for list items */
+.tab-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    background-color: #ff2020; /* Vertical line color */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .about-me-container {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    }
+
+    .about-me-content h2 {
+        text-align: center;
+        font-size: 3rem;
+    }
+}
+
+/* --- Gallery Styles --- */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    background: var(--secondary-bg);
+    border: 3px solid #9a202073;
+    border-radius: 8px;
+    
+    /* INITIAL STATE (before scrolling into view) */
+    opacity: 0;
+    transform: translateY(20px);
+
+    /* TRANSITION for both scroll and hover effects */
+    transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* VISIBLE STATE (class added by JavaScript) */
+.gallery-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HOVER STATE (works on visible items) */
+.gallery-item.is-visible:hover {
+    transform: translateY(-18px); /* Lifts the item up */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 5px; 
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    background: var(--secondary-bg);
+    margin-top: 2rem;
+}
