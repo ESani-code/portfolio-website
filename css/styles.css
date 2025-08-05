@@ -427,6 +427,10 @@ header nav ul li a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+
+    /* justify-content: center;
+    margin: 0 auto;
+    max-width: 80%; */
 }
 
 .gallery-item {
@@ -461,6 +465,19 @@ header nav ul li a:hover {
     object-fit: cover;
     border-radius: 5px; 
 }
+
+.gallery-item video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; 
+}
+
+#motion-design .gallery-item {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
 
 /* --- Footer --- */
 footer {
