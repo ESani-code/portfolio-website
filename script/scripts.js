@@ -1,18 +1,46 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // You can add JavaScript functionality here.
+    // --- Custom Smooth Scrolling ---
+    // This replaces the default browser smooth scroll to allow for custom speed.
 
-    // Example: Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+    const scrollDuration = 1500; // Duration of the scroll in milliseconds (e.g., 1000 = 1 second)
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+    smoothScrollLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the default jump
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                let startTime = null;
+
+                // Animation function
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, distance, scrollDuration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < scrollDuration) requestAnimationFrame(animation);
+                }
+
+                // Easing function for a smoother start and end
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            }
         });
     });
+
 
     // Example: Add a simple animation to gallery items on scroll
     // --- Scroll Animation for Gallery ---
