@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-255">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website</title>
     <link rel="stylesheet" href="css/styles.css">
@@ -9,25 +9,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Floating Glass Elements with data attributes for parallax speed -->
+    <div class="floating-glass fg1" data-speed-y="0.3" data-speed-x="-0.1" data-speed-rotate="0.02"></div>
+    <div class="floating-glass fg2" data-speed-y="-0.2" data-speed-x="0.05" data-speed-rotate="-0.03"></div>
+    <div class="floating-glass fg3" data-speed-y="0.1" data-speed-x="0.2" data-speed-rotate="0.01"></div>
+    <div class="floating-glass fg4" data-speed-y="-0.4" data-speed-x="-0.05" data-speed-rotate="0.05"></div>
+    <div class="floating-glass fg5" data-speed-y="0.25" data-speed-x="0.15" data-speed-rotate="-0.02"></div>
+    <div class="floating-glass fg6" data-speed-y="-0.15" data-speed-x="-0.1" data-speed-rotate="0.03"></div>
+    <div class="floating-glass fg7" data-speed-y="0.1" data-speed-x="-0.2" data-speed-rotate="-0.01"></div>
+    <div class="floating-glass fg8" data-speed-y="-0.3" data-speed-x="0.1" data-speed-rotate="0.04"></div>
+    <div class="floating-glass fg9" data-speed-y="0.2" data-speed-x="-0.08" data-speed-rotate="-0.025"></div>
+    <div class="floating-glass fg10" data-speed-y="-0.1" data-speed-x="0.12" data-speed-rotate="0.015"></div>
+
 
     <header>
         <div class="header-bg">
             <div class="container">
-            <div class="logo" id="logopic"><img src="images/Logo.png" alt="Logo Picture"></div>
-            <nav>
-                <ul>
-                    <div id="me-box"><li><a href="#about-me">About Me</a></li></div>
-                    <li><a href="#graphic-design">Graphics</a></li>
-                    <li><a href="#motion-design">Motion Design</a></li>
-                    <li><a href="#marketing-videos">Marketing Videos</a></li>
-                    <li><a href="#video-editing">Video Editing</a></li>
-                </ul>
-            </nav>
+                <div class="logo" id="logopic"><img src="images/Logo.png" alt="Logo Picture"></div>
+                <nav class="desktop-nav">
+                    <ul>
+                        <div id="me-box"><li><a href="#about-me">About Me</a></li></div>
+                        <li><a href="#graphic-design">Graphics</a></li>
+                        <li><a href="#motion-design">Motion Design</a></li>
+                        <li><a href="#marketing-videos">Marketing Videos</a></li>
+                        <li><a href="#video-editing">Video Editing</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger-menu">
+                    <!-- Replace with your hamburger icon image or SVG -->
+                    <img src="images/icons/burgermenu.png" alt="Menu">
+                </div>
+            </div>
         </div>
-
-        </div>
-        
     </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-close">
+             <!-- Optional: Add a close icon here -->
+             <img src="images/icons/png-close.png" alt="Close Menu">
+        </div>
+        <ul>
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#graphic-design">Graphics</a></li>
+            <li><a href="#motion-design">Motion Design</a></li>
+            <li><a href="#marketing-videos">Marketing Videos</a></li>
+            <li><a href="#video-editing">Video Editing</a></li>
+        </ul>
+    </nav>
+
 
     <main>
         <section class="hero">
@@ -111,7 +141,7 @@
                         <ul>
                             <li>
                                 <p>2022-2027</p>
-                                <p>Computer Engineering, Covenant University, Ota</p>  
+                                <p>Computer Engineering, Covenant University, Ota</p>
                             </li>
                             <li></li>
                         </ul>

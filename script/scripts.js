@@ -2,14 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Custom Smooth Scrolling ---
-    // This replaces the default browser smooth scroll to allow for custom speed.
-
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    const scrollDuration = 1500; // Duration of the scroll in milliseconds (e.g., 1000 = 1 second)
+    const scrollDuration = 1500;
 
     smoothScrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent the default jump
+            e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const distance = targetPosition - startPosition;
                 let startTime = null;
 
-                // Animation function
                 function animation(currentTime) {
                     if (startTime === null) startTime = currentTime;
                     const timeElapsed = currentTime - startTime;
@@ -28,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (timeElapsed < scrollDuration) requestAnimationFrame(animation);
                 }
 
-                // Easing function for a smoother start and end
                 function ease(t, b, c, d) {
                     t /= d / 2;
                     if (t < 1) return c / 2 * t * t + b;
@@ -41,29 +37,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-    // Example: Add a simple animation to gallery items on scroll
     // --- Scroll Animation for Gallery ---
     const galleryItems = document.querySelectorAll('.gallery-item');
-
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // When the element is visible in the viewport
             if (entry.isIntersecting) {
-                // Add the 'is-visible' class to trigger the CSS animation
                 entry.target.classList.add('is-visible');
-                // Stop observing the element so the animation only happens once
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the item is visible
+        threshold: 0.1
     });
 
-    // Start observing each gallery item
     galleryItems.forEach(item => {
         observer.observe(item);
     });
+
+    // --- Hamburger Menu Functionality ---
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.add('open');
+    });
+
+    mobileNavClose.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+    });
+
+    // Close mobile nav when a link is clicked
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+        });
+    });
+
+    // --- Floating Glass Animation (Combined Parallax and Float) ---
+    const floatingGlasses = document.querySelectorAll('.floating-glass');
+
+    function animateFloatingGlass() {
+        const scrollY = window.scrollY;
+        const time = Date.now();
+
+        floatingGlasses.forEach(glass => {
+            // Parallax values based on scroll
+            const speedY = parseFloat(glass.getAttribute('data-speed-y'));
+            const speedX = parseFloat(glass.getAttribute('data-speed-x'));
+            const speedRotate = parseFloat(glass.getAttribute('data-speed-rotate'));
+
+            const parallaxTranslateY = scrollY * speedY;
+            const parallaxTranslateX = scrollY * speedX;
+            const parallaxRotate = scrollY * speedRotate;
+
+            // Continuous floating values based on time
+            // Use different multipliers for more random movement
+            const floatTranslateY = Math.sin(time * 0.0005 * speedY) * 10;
+            const floatTranslateX = Math.cos(time * 0.0003 * speedX) * 15;
+            const floatRotate = Math.sin(time * 0.0001 * speedRotate) * 5;
+
+            // Combine both effects
+            const totalTranslateX = parallaxTranslateX + floatTranslateX;
+            const totalTranslateY = parallaxTranslateY + floatTranslateY;
+            const totalRotate = parallaxRotate + floatRotate;
+
+            glass.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px) rotate(${totalRotate}deg)`;
+        });
+
+        // Loop the animation
+        requestAnimationFrame(animateFloatingGlass);
+    }
+
+    // Start the animation loop
+    animateFloatingGlass();
 });
 
 // --- Tab Functionality for About Me Section ---
@@ -72,18 +120,14 @@ const tabContents = document.querySelectorAll('.tab-content');
 
 tabLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default link behavior
-
-        // Get the target tab from the data attribute
+        e.preventDefault();
         const targetTab = link.getAttribute('data-tab');
 
-        // Update active state for tab links
         tabLinks.forEach(innerLink => {
             innerLink.classList.remove('active');
         });
         link.classList.add('active');
 
-        // Show/hide tab content
         tabContents.forEach(content => {
             if (content.id === targetTab) {
                 content.classList.add('active');
