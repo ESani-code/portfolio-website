@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const time = Date.now();
 
         floatingGlasses.forEach(glass => {
-            // Parallax values based on scroll
             const speedY = parseFloat(glass.getAttribute('data-speed-y'));
             const speedX = parseFloat(glass.getAttribute('data-speed-x'));
             const speedRotate = parseFloat(glass.getAttribute('data-speed-rotate'));
@@ -92,13 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const parallaxTranslateX = scrollY * speedX;
             const parallaxRotate = scrollY * speedRotate;
 
-            // Continuous floating values based on time
-            // Use different multipliers for more random movement
             const floatTranslateY = Math.sin(time * 0.0005 * speedY) * 10;
             const floatTranslateX = Math.cos(time * 0.0003 * speedX) * 15;
             const floatRotate = Math.sin(time * 0.0001 * speedRotate) * 5;
 
-            // Combine both effects
             const totalTranslateX = parallaxTranslateX + floatTranslateX;
             const totalTranslateY = parallaxTranslateY + floatTranslateY;
             const totalRotate = parallaxRotate + floatRotate;
@@ -106,12 +102,100 @@ document.addEventListener('DOMContentLoaded', () => {
             glass.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px) rotate(${totalRotate}deg)`;
         });
 
-        // Loop the animation
         requestAnimationFrame(animateFloatingGlass);
     }
 
-    // Start the animation loop
     animateFloatingGlass();
+
+    // --- JS-Powered 3D Coverflow Slider ---
+    const coverflowContainer = document.querySelector('.coverflow-container-js');
+    if (coverflowContainer) {
+        const slides = coverflowContainer.querySelectorAll('.coverflow-slide-js');
+        const prevBtn = coverflowContainer.querySelector('.prev-btn');
+        const nextBtn = coverflowContainer.querySelector('.next-btn');
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        function updateCoverflow() {
+            slides.forEach((slide, i) => {
+                const offset = (i - currentIndex + slides.length) % slides.length;
+                const isVisible = Math.abs(offset - slides.length / 2) > 2;
+
+                let transform = '';
+                let zIndex = 0;
+
+                if (offset === 0) {
+                    // Center slide
+                    transform = 'translateX(0) translateZ(0) rotateY(0deg)';
+                    zIndex = 10;
+                    slide.classList.add('active');
+                } else if (offset === 1) {
+                    // Right slide
+                    transform = 'translateX(35%) translateZ(-150px) rotateY(-35deg)';
+                    zIndex = 9;
+                    slide.classList.remove('active');
+                } else if (offset === slides.length - 1) {
+                    // Left slide
+                    transform = 'translateX(-35%) translateZ(-150px) rotateY(35deg)';
+                    zIndex = 9;
+                    slide.classList.remove('active');
+                } else if (offset === 2) {
+                    // Second right slide
+                    transform = 'translateX(70%) translateZ(-300px) rotateY(-35deg)';
+                    zIndex = 8;
+                    slide.classList.remove('active');
+                } else if (offset === slides.length - 2) {
+                    // Second left slide
+                    transform = 'translateX(-70%) translateZ(-300px) rotateY(35deg)';
+                    zIndex = 8;
+                    slide.classList.remove('active');
+                } else {
+                    // Hidden slides
+                    transform = offset < slides.length / 2 
+                        ? 'translateX(100%) translateZ(-400px) rotateY(-35deg)' 
+                        : 'translateX(-100%) translateZ(-400px) rotateY(35deg)';
+                    zIndex = 7;
+                    slide.classList.remove('active');
+                }
+
+                slide.style.transform = transform;
+                slide.style.zIndex = zIndex;
+                slide.style.opacity = zIndex < 8 ? '0' : '1';
+            });
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCoverflow();
+            }, 5000); // Auto-play every 5 seconds
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCoverflow();
+            resetAutoPlay();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCoverflow();
+            resetAutoPlay();
+        });
+
+        slides.forEach((slide, i) => {
+            slide.addEventListener('click', () => {
+                currentIndex = i;
+                updateCoverflow();
+                resetAutoPlay();
+            });
+        });
+
+        // Initial setup
+        updateCoverflow();
+        resetAutoPlay();
+    }
 });
 
 // --- Tab Functionality for About Me Section ---

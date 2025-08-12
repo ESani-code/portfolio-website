@@ -82,29 +82,6 @@ body {
     line-height: 1.6;
 }
 
-/* ...existing code... */
-
-/*
-:root {
-    --primary-bg: #1a1a1a;
-    --secondary-bg: #2b2b2b;
-    --text-color: #e0e0e0;
-    --accent-color: #c0c0c0;
-    --hover-color: #ffffff;
-    --border-color: #444;
-}
-*/
-
-/*
-body {
-    font-family: 'CustomFont', sans-serif;
-    background-color: var(--primary-bg);
-    color: var(--text-color);
-    margin: 0;
-    line-height: 1.6;
-}
-*/
-
 .container {
     width: 90%;
     max-width: 1200px;
@@ -291,7 +268,7 @@ main {
 
 /* --- Hero Section --- */
 .hero {
-    position: static;
+    position: relative;
     text-align: center;
     padding: 4rem 0;
     background: linear-gradient(rgba(9, 9, 9, 0.4),rgba(96, 16, 16, 0.5)),  no-repeat center center;
@@ -440,6 +417,7 @@ main {
     font-size: 5rem;
     text-shadow: 0 0 80px #070707cb;
     margin-bottom: 0.3rem;
+    line-height: 1;
 }
 
 .hero p {
@@ -476,23 +454,24 @@ main {
 
 /* --- Work Sections --- */
 .work-section {
-    padding: 4rem 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
 .work-section h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 /* --- About Me Section --- */
 
 #about-me {
-    background-color: #131313; /* Dark blue from image */
+    background-color: #131313;
     margin-top: 0px;
     position: relative;
     z-index: 0;
+    padding: 4rem 0;
 }
 
 .about-me-container {
@@ -616,7 +595,7 @@ main {
     }
 }
 
-/* --- Gallery Styles --- */
+/* --- Gallery Styles (for other sections) --- */
 
 .gallery {
     display: grid;
@@ -649,17 +628,12 @@ main {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
-.gallery-item img {
+.gallery-item img,
+.gallery-item video {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
-    border-radius: 5px;
-}
-
-.gallery-item video {
-    width: 100%;
-    height: auto;
     border-radius: 5px;
 }
 
@@ -723,6 +697,7 @@ footer .social-links img:hover {
 @media (max-width: 1024px) {
     .hero h1 {
         font-size: 4rem;
+        line-height: 0.9;
     }
 
     .hero p {
@@ -754,7 +729,7 @@ footer .social-links img:hover {
     }
 
     .hero h1 {
-        font-size: 3rem;
+        font-size: 3rem;        
     }
 
     .hero p {
@@ -794,11 +769,12 @@ footer .social-links img:hover {
 @media (max-width: 480px) {
     header .header-bg {
         width: 95%;
+        height: 30px;
         border-radius: 50px;
     }
 
     header .logo img {
-        height: 40px;
+        height: 30px;
     }
 
     .hero {
@@ -807,7 +783,8 @@ footer .social-links img:hover {
     }
 
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 3rem;
+        line-height: 0.9;
     }
 
     .hero p {
@@ -847,4 +824,79 @@ footer .social-links img:hover {
     .gallery {
         grid-template-columns: 1fr;
     }
+}
+
+/* --- JS-Powered 3D Coverflow Slider --- */
+.coverflow-container-js {
+    position: relative;
+    width: 100%;
+    height: 700px; /* Adjust height as needed */
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.coverflow-track-js {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+}
+
+.coverflow-slide-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    height: auto;
+    cursor: pointer;
+    border: 3px solid #9a202073;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+    filter: brightness(0.5); /* Default state is dimmed */
+}
+
+.coverflow-slide-js.active {
+    filter: brightness(1.0); /* Active slide is bright */
+    transition: transform 0.5s ease-in-out;
+}
+
+
+.coverflow-slide-js.active :hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+
+.coverflow-slide-js img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.coverflow-nav {
+    text-align: center;
+    position: relative;
+    z-index: 20;
+}
+
+.coverflow-nav button {
+    text-align: center;
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 15px;
+    margin: 0 20px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.coverflow-nav button:hover {
+    background: var(--hover-color);
 }
