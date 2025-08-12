@@ -1,5 +1,10 @@
 // script.js
 
+// --- Preloader Functionality ---
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Custom Smooth Scrolling ---
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
@@ -119,38 +124,31 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateCoverflow() {
             slides.forEach((slide, i) => {
                 const offset = (i - currentIndex + slides.length) % slides.length;
-                const isVisible = Math.abs(offset - slides.length / 2) > 2;
-
+                
                 let transform = '';
                 let zIndex = 0;
 
                 if (offset === 0) {
-                    // Center slide
                     transform = 'translateX(0) translateZ(0) rotateY(0deg)';
                     zIndex = 10;
                     slide.classList.add('active');
                 } else if (offset === 1) {
-                    // Right slide
                     transform = 'translateX(35%) translateZ(-150px) rotateY(-35deg)';
                     zIndex = 9;
                     slide.classList.remove('active');
                 } else if (offset === slides.length - 1) {
-                    // Left slide
                     transform = 'translateX(-35%) translateZ(-150px) rotateY(35deg)';
                     zIndex = 9;
                     slide.classList.remove('active');
                 } else if (offset === 2) {
-                    // Second right slide
                     transform = 'translateX(70%) translateZ(-300px) rotateY(-35deg)';
                     zIndex = 8;
                     slide.classList.remove('active');
                 } else if (offset === slides.length - 2) {
-                    // Second left slide
                     transform = 'translateX(-70%) translateZ(-300px) rotateY(35deg)';
                     zIndex = 8;
                     slide.classList.remove('active');
                 } else {
-                    // Hidden slides
                     transform = offset < slides.length / 2 
                         ? 'translateX(100%) translateZ(-400px) rotateY(-35deg)' 
                         : 'translateX(-100%) translateZ(-400px) rotateY(35deg)';
@@ -169,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             autoPlayInterval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % slides.length;
                 updateCoverflow();
-            }, 5000); // Auto-play every 5 seconds
+            }, 5000);
         }
 
         prevBtn.addEventListener('click', () => {
@@ -192,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Initial setup
         updateCoverflow();
         resetAutoPlay();
     }

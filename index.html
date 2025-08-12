@@ -9,6 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader Section -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="images/Logo.png" alt="Logo">
+        </div>
+        <div class="loader-bar"></div>
+    </div>
+
     <!-- Floating Glass Elements with data attributes for parallax speed -->
     <div class="floating-glass fg1" data-speed-y="0.3" data-speed-x="-0.1" data-speed-rotate="0.02"></div>
     <div class="floating-glass fg2" data-speed-y="-0.2" data-speed-x="0.05" data-speed-rotate="-0.03"></div>
@@ -36,17 +44,14 @@
                     </ul>
                 </nav>
                 <div class="hamburger-menu">
-                    <!-- Replace with your hamburger icon image or SVG -->
                     <img src="images/icons/burgermenu.png" alt="Menu">
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
     <nav class="mobile-nav">
         <div class="mobile-nav-close">
-             <!-- Optional: Add a close icon here -->
              <img src="images/icons/png-close.png" alt="Close Menu">
         </div>
         <ul>
@@ -80,34 +85,27 @@
                 </div>
             </div>
             <div class="scroll-down">
-                <img src="images/icons/scrolldown.png" alt="Scroll Down Icon">
+                <img src="images/icons/scrolldown.png" alt="Scroll Down Icon" loading="lazy">
             </div>
         </section>
 
 
         <section id="about-me" class="work-section">
             <div class="container about-me-container">
-                <!-- Left Column: Image -->
                 <div class="about-me-image">
-                    <img src="images/me-pic.png" alt="A photo of Sani Eneojo Emmanuel">
+                    <img src="images/me-pic.png" alt="A photo of Sani Eneojo Emmanuel" loading="lazy">
                 </div>
-
-                <!-- Right Column: Text Content -->
                 <div class="about-me-content">
                     <h2>About Me</h2>
                     <p>
                         I'm a <span class="highlight">Computer Engineering</span> student who loves the field in the intersection between media and technology. My passion lies in <span class="highlight">solving problems</span> and coming up with creative <span class="highlight">visual solutions</span> that improve awareness.
                     </p>
-
-                    <!-- Tab Navigation -->
                     <nav class="about-tabs">
                         <a href="#" class="tab-link active" data-tab="skills">Skills</a>
                         <a href="#" class="tab-link" data-tab="experience">Experience</a>
                         <a href="#" class="tab-link" data-tab="education">Education</a>
                         <a href="#" class="tab-link" data-tab="certifications">Certifications</a>
                     </nav>
-
-                    <!-- Tab Content -->
                     <div id="skills" class="tab-content active">
                         <ul>
                             <li>Graphic Designing</li>
@@ -147,7 +145,6 @@
                         </ul>
                     </div>
                     <div id="certifications" class="tab-content">
-                        <!-- Add your certifications details here -->
                         <ul>
                             <li>
                                 <p>June 2024</p>
@@ -185,13 +182,12 @@
                 <h2>Graphic Designing</h2>
                 <div class="coverflow-container-js">
                     <div class="coverflow-track-js">
-                        <!-- Add as many slides as you want here -->
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork1.png" alt="Graphic Design Project 1"></div>
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork2.png" alt="Graphic Design Project 2"></div>
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork3.png" alt="Graphic Design Project 3"></div>
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork4.jpg" alt="Graphic Design Project 4"></div>
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork5.jpg" alt="Graphic Design Project 5"></div>
-                        <div class="coverflow-slide-js"><img src="images/graphics/gwork6.jpg" alt="Graphic Design Project 6"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork1.png" alt="Graphic Design Project 1" loading="lazy"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork2.png" alt="Graphic Design Project 2" loading="lazy"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork3.png" alt="Graphic Design Project 3" loading="lazy"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork4.jpg" alt="Graphic Design Project 4" loading="lazy"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork5.jpg" alt="Graphic Design Project 5" loading="lazy"></div>
+                        <div class="coverflow-slide-js"><img src="images/graphics/gwork6.jpg" alt="Graphic Design Project 6" loading="lazy"></div>
                     </div>
                     <div class="coverflow-nav">
                         <button class="prev-btn">&larr;</button>
@@ -205,9 +201,8 @@
             <div class="container">
                 <h2>Motion Designing</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid1.mp4" controls loop></video></div>
-                    <div class="gallery-item"><video src="video/vid2.mp4" controls loop></video></div>
-                    <!-- <div class="gallery-item"><video src="video/vid1.mp4" controls loop></video></div> -->
+                    <div class="gallery-item"><video src="video/vid1.mp4" controls preload="metadata" playsinline></video></div>
+                    <div class="gallery-item"><video src="video/vid2.mp4" controls preload="metadata" playsinline></video></div>
                 </div>
             </div>
         </section>
@@ -216,7 +211,7 @@
             <div class="container">
                 <h2>Marketing Videos</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid5.mp4" controls loop></video></div>
+                    <div class="gallery-item"><video src="video/vid5.mp4" controls preload="metadata" playsinline></video></div>
                 </div>
             </div>
         </section>
@@ -225,8 +220,8 @@
             <div class="container">
                 <h2>Video Editing</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid3.mp4" controls loop></video></div>
-                    <div class="gallery-item"><video src="video/vid6.mp4" controls loop></video></div>
+                    <div class="gallery-item"><video src="video/vid3.mp4" controls preload="metadata" playsinline></video></div>
+                    <div class="gallery-item"><video src="video/vid6.mp4" controls preload="metadata" playsinline></video></div>
                 </div>
             </div>
         </section>
@@ -237,10 +232,10 @@
         <div class="container">
             <p>©Design Labs. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/see.d_creative/" target="_blank" rel="noopener noreferrer"><img src="images/icons/instagram.png" alt="instagram Logo"></a>
-                <a href="https://www.linkedin.com/in/emmanuel-sani-55944325a/" target="_blank" rel="noopener noreferrer"><img src="images/icons/linked-in.png" alt="LinkedIn Logo"></a>
-                <a href="https://github.com/ESani-code" target="_blank" rel="noopener noreferrer"><img src="images/icons/github.png" alt="GitHub Logo"></a>
-                <a href="https://www.behance.net/emmanuelsani1" target="_blank" rel="noopener noreferrer"><img src="images/icons/behance.png" alt="Behance Logo"></a>
+                <a href="https://www.instagram.com/see.d_creative/" target="_blank" rel="noopener noreferrer"><img src="images/icons/instagram.png" alt="instagram Logo" loading="lazy"></a>
+                <a href="https://www.linkedin.com/in/emmanuel-sani-55944325a/" target="_blank" rel="noopener noreferrer"><img src="images/icons/linked-in.png" alt="LinkedIn Logo" loading="lazy"></a>
+                <a href="https://github.com/ESani-code" target="_blank" rel="noopener noreferrer"><img src="images/icons/github.png" alt="GitHub Logo" loading="lazy"></a>
+                <a href="https://www.behance.net/emmanuelsani1" target="_blank" rel="noopener noreferrer"><img src="images/icons/behance.png" alt="Behance Logo" loading="lazy"></a>
             </div>
         </div>
     </footer>
