@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <!-- Preloader Section -->
@@ -39,8 +40,8 @@
                         <div id="me-box"><li><a href="#about-me">About Me</a></li></div>
                         <li><a href="#graphic-design">Graphics</a></li>
                         <li><a href="#motion-design">Motion Design</a></li>
-                        <li><a href="#marketing-videos">Marketing Videos</a></li>
                         <li><a href="#video-editing">Video Editing</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="hamburger-menu">
@@ -74,9 +75,21 @@
                 <div class="glass-circle glass-circle5"><img src="images/circle_bg/circle5.png" alt="Circle BG Element 5"></div>
                 <div class="glass-circle glass-circle6"><img src="images/circle_bg/circle6.png" alt="Circle BG Element 6"></div>
             </div>
+            
             <div class="container">
                 <h1>Hi, I'm Sani Eneojo Emmanuel</h1>
-                <p>Computer Engineering Student, Media Enthusiast, and Visual Editor.</p>
+                <div class="Hero-about">
+                    <p>I'm a
+                        <span>
+                            <span>Computer Engineering Student</span>
+                            <span>Graphics Designer</span>
+                            <span>Motion Designer</span>
+                            <span>Media Enthusiast</span>
+                            <span>Visual Editor</span>
+                        </span>
+                    </p>
+                </div>
+                
                 <div class="app-logo">
                     <img src="images/icons/aftereffect.png" alt="After Effects Icon">
                     <img src="images/icons/photoshop.png" alt="Photoshop Icon">
@@ -204,27 +217,137 @@
             <div class="container">
                 <h2>Motion Designing</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid1.mp4" controls preload="metadata" playsinline></video></div>
-                    <div class="gallery-item"><video src="video/vid2.mp4" controls preload="metadata" playsinline></video></div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <!-- MODIFICATION: Added controls="false" and removed loop -->
+                            <video src="video/vid1.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <video src="video/vid2.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <video src="video/vid7.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="marketing-videos" class="work-section">
-            <div class="container">
-                <h2>Marketing Videos</h2>
-                <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid5.mp4" controls preload="metadata" playsinline></video></div>
-                </div>
-            </div>
-        </section>
 
         <section id="video-editing" class="work-section">
             <div class="container">
                 <h2>Video Editing</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><video src="video/vid3.mp4" controls preload="metadata" playsinline></video></div>
-                    <div class="gallery-item"><video src="video/vid6.mp4" controls preload="metadata" playsinline></video></div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <video src="video/vid3.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <video src="video/vid6.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="video-container" data-unmuted="false">
+                            <div class="unmute-indicator"><img src="images/icons/unmute.png" alt="Unmuted"></div>
+                            <div class="video-overlay-button"></div>
+                            <video src="video/vid5.mp4" preload="metadata" playsinline controls="false"></video>
+                            <div class="video-controls">
+                                <button class="play-pause-btn"></button>
+                                <div class="progress-bar-container"><div class="progress-bar"></div></div>
+                                <button class="mute-btn"></button>
+                                <button class="fullscreen-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="work-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                        <div class="contact-social-links">
+                            <a href="https://www.linkedin.com/in/emmanuel-sani-55944325a/" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icons/linked-in.png" alt="LinkedIn Logo">
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/design_labsng/" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icons/instagram.png" alt="instagram Logo">
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.behance.net/emmanuelsani1" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icons/behance.png" alt="Behance Logo">
+                                <span>Behance</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -235,7 +358,7 @@
         <div class="container">
             <p>©Design Labs. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/see.d_creative/" target="_blank" rel="noopener noreferrer"><img src="images/icons/instagram.png" alt="instagram Logo" loading="lazy"></a>
+                <a href="https://www.instagram.com/design_labsng/" target="_blank" rel="noopener noreferrer"><img src="images/icons/instagram.png" alt="instagram Logo" loading="lazy"></a>
                 <a href="https://www.linkedin.com/in/emmanuel-sani-55944325a/" target="_blank" rel="noopener noreferrer"><img src="images/icons/linked-in.png" alt="LinkedIn Logo" loading="lazy"></a>
                 <a href="https://github.com/ESani-code" target="_blank" rel="noopener noreferrer"><img src="images/icons/github.png" alt="GitHub Logo" loading="lazy"></a>
                 <a href="https://www.behance.net/emmanuelsani1" target="_blank" rel="noopener noreferrer"><img src="images/icons/behance.png" alt="Behance Logo" loading="lazy"></a>

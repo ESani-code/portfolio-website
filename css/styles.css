@@ -57,7 +57,7 @@ body.loaded #preloader {
 
 html {
     /* Sets the default cursor for the entire page */
-    cursor: url("../cursor/point32.png"), auto;
+    cursor: url("../cursor/pointer2-32.png"), auto;
     overflow-x: hidden; /* Prevents scrollbar from appearing */
 }
 
@@ -389,11 +389,8 @@ main {
 .hero-bg .glass-circle1 {
     width: 300px;
     height: 300px;
-    left: -5%;
+    left: -10%;
     top: -10%;
-    /* background: radial-gradient(circle at 50% 40%, rgba(253, 90, 90, 0.8), transparent 70%); */
-    /* border-top: 1.5px solid rgba(221, 64, 64, 0.262);
-    box-shadow: 0 0 80px #ee9e9e22; */
     animation-delay: 0s;
 }
 
@@ -407,8 +404,6 @@ main {
     height: 350px;
     left: 88%;
     top: -20%;
-    /* box-shadow: 0 0 80px #ee9e9e22;
-    background: radial-gradient(circle at 40% 60%, #9a2020 15%, transparent 80%); */
     animation-delay: 2s;
 }
 
@@ -420,11 +415,8 @@ main {
 .hero-bg .glass-circle3 {
     width: 400px;
     height: 400px;
-    left: -10%;
-    top: 50%;
-    /* background: radial-gradient(circle at 60% 40%, #f04b1;
-    /* box-shadow: 0 0 80px #ee9e9e22;
-    background: radial-gradient(circle at 50% 20%, #ed725466 40%, transparent 80%); */
+    left: -15%;
+    top: 60%;
     animation-delay: 4s;
 }
 
@@ -438,9 +430,6 @@ main {
     height: 800px;
     left: 23%;
     top: -95%;
-    /* background: radial-gradient(circle at 60% 40%, #f04b1d 5%, transparent 50%);
-    opacity: 0.6;
-    box-shadow: 0 0 80px #ee9e9e22; */
     animation-delay: 6s;
 }
 
@@ -454,9 +443,6 @@ main {
     height: 650px;
     left: 30%;
     top: 60%;
-    /* background: radial-gradient(circle at 60% 40%, #f04b1d 5%, transparent 50%);
-    opacity: 0.8;
-    box-shadow: 0 0 80px #ee9e9e22; */
     animation-delay: 8s;
 }
 
@@ -468,12 +454,8 @@ main {
 .hero-bg .glass-circle6 {
     width: 400px;
     height: 400px;
-    transform: rotate(-30deg);
     left: 80%;
     top: 55%;
-    /* background: radial-gradient(circle at 60% 40%, #f0321d 5%, transparent 50%);
-    opacity: 0.8;
-    box-shadow: 0 0 80px #ee9e9e22; */
     animation-delay: 9.5s;
 }
 
@@ -512,8 +494,44 @@ main {
 }
 
 .hero p {
-    font-size: 1.3rem;
+    margin-left: 0px;
+    font-size: 2rem;
     margin-bottom: 0.3rem;
+    text-shadow: 0 0 30px rgba(7, 7, 7, 0.616);
+}
+
+.hero-about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero p > span {
+    position: relative;
+    display: inline-block;
+    color: var(--accent-color);
+    vertical-align: top;
+    text-align: left;
+    height: 2.8rem;
+    overflow: hidden;
+}
+.hero p > span > span {
+    display: block;
+    animation: popup 16s infinite ease-in-out;
+}
+
+@keyframes popup {
+    0%, 5% { 
+        transform: translateY(0%);
+    }
+    12.5% { transform: translateY(-100%); }
+    25% { transform: translateY(-200%); }
+    37.5% { transform: translateY(-300%); }
+    50% { transform: translateY(-400%); }
+    62.5% { transform: translateY(-300%); }
+    75% { transform: translateY(-200%); }
+    87.5% { transform: translateY(-100%); }
+    95%, 100% { transform: translateY(0%); }
 }
 
 .hero .container{
@@ -728,10 +746,298 @@ main {
     border-radius: 5px;
 }
 
+/* MODIFICATION START: HIDE DEFAULT VIDEO CONTROLS */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+video {
+    --webkit-appearance: none;
+}
+
+/* MODIFICATION END */
+
 #motion-design .gallery-item {
     justify-content: center;
     margin: 0 auto;
     max-width: 80%;
+}
+
+/* --- MODIFICATION START: Custom Video Player Styles --- */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden; /* Ensures controls don't peek out */
+}
+
+.video-container.fullscreen video {
+    object-fit: contain; /* This will letterbox the video instead of cropping */
+}
+
+/* Unmute indicator in top right corner */
+.unmute-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 50%;
+}
+.unmute-indicator.visible {
+    opacity: 1;
+}
+.unmute-indicator img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Big play/pause button that shows in the center */
+.video-overlay-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to go through to the container */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.video-overlay-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 0 20px 30px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
+}
+.video-container.paused .video-overlay-button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Control bar at the bottom */
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 4;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.video-container:hover .video-controls {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.video-controls button {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.video-controls button:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Icons for the buttons */
+.play-pause-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+}
+.video-container.playing .play-pause-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E");
+}
+/* --- MODIFICATION START: Dynamic Mute/Unmute Icons --- */
+/* Style for when the video IS NOT muted (sound on) */
+.video-container.unmuted .mute-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E");
+}
+/* Style for when the video IS muted (sound off) */
+.video-container.muted .mute-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3C/svg%3E");
+}
+/* --- MODIFICATION END --- */
+
+
+/* --- MODIFICATION START: Fullscreen Button Icons --- */
+/* Style for entering fullscreen */
+.fullscreen-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z'/%3E%3C/svg%3E");
+}
+/* Style for exiting fullscreen */
+.video-container.fullscreen .fullscreen-btn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z'/%3E%3C/svg%3E");
+}
+/* --- MODIFICATION END --- */
+
+
+/* Progress Bar */
+.progress-bar-container {
+    flex-grow: 1;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: ew-resize;
+}
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.1s linear;
+}
+/* --- MODIFICATION END: Custom Video Player Styles --- */
+
+
+
+
+
+
+#motion-design .gallery-item {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+/* Contact Section Styles */
+#contact {
+    background-color: var(--secondary-bg);
+    padding: 4rem 0;
+    border-bottom: none;
+}
+
+#contact h2 {
+    margin-bottom: 3rem;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-bg);
+    border: 1.5px solid #9a202073;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-family: 'ProductSans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(237, 56, 56, 0.3);
+}
+
+/* --- MODIFICATION START: Glassmorphism Submit Button --- */
+.submit-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    /* FROM SOLID RED TO SEMI-TRANSPARENT WHITE */
+    background: rgba(255, 255, 255, 0.1);
+    /* THIS IS THE FROSTED GLASS EFFECT */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    color: var(--text-color);
+    /* REPLACED 'none' WITH A SUBTLE BORDER TO DEFINE THE EDGE */
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    /* ADDED BOX-SHADOW TO LIFT THE BUTTON */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* UPDATED TRANSITION FOR SMOOTHER EFFECT */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+    /* ON HOVER, MAKE IT SLIGHTLY BRIGHTER */
+    background: rgba(244, 56, 56, 0.2);
+    transform: translateY(-3px);
+    /* ENHANCE THE SHADOW ON HOVER */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+/* --- MODIFICATION END --- */
+
+.contact-info {
+    padding-left: 2rem;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-social-links a {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-social-links a:hover {
+    color: var(--hover-color);
+}
+
+.contact-social-links img {
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
 }
 
 
@@ -898,6 +1204,47 @@ footer .social-links img:hover {
         padding: 8px 10px;
         margin: 20px 10px;
     }
+
+    .hero p > span {
+        height: 2.0rem;
+    }
+
+    .hero-bg .glass-circle1 {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-bg .glass-circle2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .hero-bg .glass-circle3 {
+        width: 320px;
+        height: 320px;
+        top: 70%;
+        left: -15%
+    }
+
+    .hero-bg .glass-circle4 {
+        width: 600px;
+        height: 600px;
+        left: 20%;
+        top: -80%;
+    }
+
+    .hero-bg .glass-circle5 {
+        width: 550px;
+        height: 550px;
+        top: 70%;
+        left: 20%;
+    }
+
+    .hero-bg .glass-circle6 {
+        width: 300px;
+        height: 300px;
+        top: 70%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -913,9 +1260,11 @@ footer .social-links img:hover {
         flex-direction: row; /* Keep logo and hamburger on the same line */
     }
 
+    /* MODIFICATION START: Adjusted Hero Font Size */
     .hero h1 {
-        font-size: 3rem;        
+        font-size: 2.8rem;        
     }
+    /* MODIFICATION END: Adjusted Hero Font Size */
 
     .hero p {
         font-size: 1rem;
@@ -962,6 +1311,63 @@ footer .social-links img:hover {
         padding: 8px 10px;
         margin: 20px 10px;
     }
+
+    .hero p > span {
+        height: 1.6rem;
+    }
+    
+    /* MODIFICATION START: Contact Form Responsiveness */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .contact-info {
+        padding-left: 0;
+        text-align: center;
+    }
+    .contact-social-links a {
+        justify-content: center;
+    }
+    /* MODIFICATION END: Contact Form Responsiveness */
+
+    .hero-bg .glass-circle1 {
+        width: 200px;
+        height: 200px;
+        top: -20%;
+        left: -15%;
+    }
+
+    .hero-bg .glass-circle2 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-bg .glass-circle3 {
+        width: 300px;
+        height: 300px;
+        top: 70%;
+        left: -25%
+    }
+
+    .hero-bg .glass-circle4 {
+        width: 500px;
+        height: 500px;
+        left: 20%;
+        top: -70%;
+    }
+
+    .hero-bg .glass-circle5 {
+        width: 450px;
+        height: 450px;
+        top: 80%;
+        left: 20%;
+    }
+
+    .hero-bg .glass-circle6 {
+        width: 250px;
+        height: 250px;
+        top: 80%;
+    }
 }
 
 /* For mobile phones */
@@ -981,10 +1387,12 @@ footer .social-links img:hover {
         height: 70vh; /* Give a bit more height on mobile */
     }
 
+    /* MODIFICATION START: Adjusted Hero Font Size */
     .hero h1 {
-        font-size: 3rem;
-        line-height: 0.9;
+        font-size: 2.2rem;
+        line-height: 1.1;
     }
+    /* MODIFICATION END: Adjusted Hero Font Size */
 
     .hero p {
         font-size: 0.9rem;
@@ -1037,5 +1445,47 @@ footer .social-links img:hover {
         padding: 8px 10px;
         margin: 40px 10px;
     }
-}
 
+    .hero p > span {
+        height: 1rem;
+    }
+
+    .hero-bg .glass-circle1 {
+        width: 160px;
+        height: 160px;
+        top: -20%;
+        left: -15%;
+    }
+
+    .hero-bg .glass-circle2 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-bg .glass-circle3 {
+        width: 260px;
+        height: 260px;
+        top: 90%;
+        left: -35%
+    }
+
+    .hero-bg .glass-circle4 {
+        width: 450px;
+        height: 450px;
+        left: 0%;
+        top: -70%;
+    }
+
+    .hero-bg .glass-circle5 {
+        width: 420px;
+        height: 420px;
+        top: 80%;
+        left: 20%;
+    }
+
+    .hero-bg .glass-circle6 {
+        width: 210px;
+        height: 210px;
+        top: 80%;
+    }
+}
