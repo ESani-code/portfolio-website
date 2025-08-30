@@ -118,6 +118,7 @@ button,
     src: url('../fonts/ProductSans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -563,7 +564,7 @@ main {
 
 /* --- Work Sections --- */
 .work-section {
-    padding: 0.5rem 0;
+    padding: 1.3rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -606,8 +607,8 @@ main {
 }
 
 .about-me-content p {
-    font-family: 'Courier New', monospace; /* Monospaced font for the body text */
-    font-size: 1.1rem;
+    font-family: 'ProductSans', monospace; /* Monospaced font for the body text */
+    font-size: 1.2rem;
     line-height: 1.8;
 }
 
@@ -664,7 +665,7 @@ main {
 .tab-content ul {
     list-style: none;
     padding: 0;
-    font-family: 'Courier New', monospace;
+    font-family: 'ProductSans', monospace;
 }
 
 .tab-content ul li {
@@ -930,7 +931,7 @@ video {
 /* Contact Section Styles */
 #contact {
     background-color: var(--secondary-bg);
-    padding: 4rem 0;
+    padding: 1rem 0;
     border-bottom: none;
 }
 
@@ -1046,13 +1047,18 @@ footer {
     position: relative; /* Changed for z-index */
     z-index: 5; /* Changed for z-index */
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
     background: var(--secondary-bg);
     margin-top: 0.2rem;
 }
 
+footer p{
+    margin: 0;
+    padding: 1rem 0;
+}
+
 footer .container {
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.9rem;
 }
 
 footer .social-links img {
