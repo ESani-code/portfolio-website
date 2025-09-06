@@ -1,0 +1,63 @@
+/* --- NEW React Text Animation Styles --- */
+
+:root {
+    --primary-bg: #070707;
+    --secondary-bg: #101010;
+    --text-color: #f0f0f0;
+    --accent-color: #ed3838;
+    --hover-color: #ff7a7a;
+    --border-color: #ff1c1c;
+}
+
+/* --- (Your existing heading styles are below and should remain) --- */
+
+/* Style the container h1 that React creates */
+.hero-heading {
+    font-family: 'ProductSans', Roboto, sans-serif;
+    font-size: 5rem;
+    text-shadow: 0 0 80px #070707cb;
+    margin-bottom: 0.3rem;
+    line-height: 1;
+    color: var(--accent-color); /* We set the color here */
+}
+
+/* Define the animation itself */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation to each word */
+.hero-heading .word {
+  display: inline-block; /* Important for transform to work */
+  opacity: 0; /* Start hidden */
+  animation: fadeInSlideUp 2.5s forwards;
+  padding-right: 15px; /* Adds space between words */
+}
+
+/* Responsive adjustments for the new heading */
+@media (max-width: 1024px) {
+    .hero-heading {
+        font-size: 4rem;
+        line-height: 0.9;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-heading {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-heading {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+}

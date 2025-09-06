@@ -332,5 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
             });
     });
+    
 
 }); // --- END OF DOMContentLoaded ---

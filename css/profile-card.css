@@ -1,0 +1,135 @@
+/* --- BASE STYLES FROM THE ORIGINAL COMPONENT --- */
+
+/* This wrapper creates the 3D space for the card to move in */
+.pc-card-wrapper {
+  --card-opacity: 0; 
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --background-x: 50%;
+  --background-y: 50%;
+  --pointer-from-center: 0;
+  --behind-gradient: radial-gradient(
+    farthest-side circle at var(--pointer-x) var(--pointer-y),
+    hsla(0, 0%, 100%, calc(var(--card-opacity) * 0.2)) 20%,
+    hsla(200, 100%, 80%, calc(var(--card-opacity) * 0.15)) 50%,
+    hsla(266, 100%, 50%, 0) 100%
+  );
+
+  width: 100%;
+  position: relative;
+  perspective: 800px;
+  /* The background properties have been removed */
+}
+
+/* When hovered, turn the glow on */
+.pc-card-wrapper.active {
+    --card-opacity: calc(1 - var(--pointer-from-center) * 0.5);
+}
+
+
+/* This is the card itself, which will be transformed */
+.pc-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 5px; /* Default border radius */
+  transform-style: preserve-3d;
+  pointer-events: auto; /* <-- THIS IS THE FIX */
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: rotateY(var(--rotate-y)) rotateX(var(--rotate-x));
+}
+
+.pc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit; /* Inherit the card's rounded corners */
+
+  /* Apply the glow background here */
+  background: var(--behind-gradient);
+  background-size: 200% 200%;
+  background-position: var(--background-x) var(--background-y);
+
+  /* Control the glow's visibility */
+  opacity: var(--card-opacity);
+  transition: opacity 0.3s ease;
+
+  /* Push the glow slightly behind the main card content in 3D space */
+  transform: translateZ(-1px);
+}
+
+/* Add a transition when the card becomes active (hovered) */
+.pc-card.active {
+  transition: transform 0.1s linear;
+}
+
+/* The inner container for all visual elements */
+.pc-inside {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+  background: radial-gradient(circle at 50%, #444, #111); /* A default background */
+}
+
+/* The main profile image */
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  border-radius: 5px; /* Default rounding */
+}
+
+/* This is the subtle shine effect that follows the cursor */
+.pc-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--card-opacity);
+  background: radial-gradient(
+    farthest-side circle at var(--pointer-x) var(--pointer-y),
+    #ffffffba 0%,
+    #ffffff00 40%
+  );
+}
+
+/* This is the glare effect from the top left */
+.pc-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--card-opacity);
+  background: radial-gradient(
+    120% 120% at 0% 0%,
+    #ffffff33 0%,
+    #ffffff00 100%
+  );
+}
+
+
+/* --- CUSTOM STYLES FOR YOUR PORTFOLIO --- */
+/* These rules are placed at the end to override the defaults */
+
+/* Targets the card specifically within your "About Me" section */
+.about-me-image .pc-card {
+  /* Re-applying your custom styles */
+  border-radius: 30px; /* Your desired corner rounding */
+  border: 4px solid #c12d2da0;
+  box-shadow: 0 10px 20px rgba(29, 12, 12, 0.244);
+  overflow: hidden; /* Ensures image respects the rounded corners */
+}
+
+/* The default component has a background; we remove it to see the image */
+.about-me-image .pc-inside {
+  background: none;
+}
+
+/* Ensure your image itself fills the container without its own rounding */
+.about-me-image .avatar {
+  border-radius: 0;
+}
