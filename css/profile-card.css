@@ -93,7 +93,7 @@
   opacity: var(--card-opacity);
   background: radial-gradient(
     farthest-side circle at var(--pointer-x) var(--pointer-y),
-    #ffffffba 0%,
+    #ffffff91 0%,
     #ffffff00 40%
   );
 }
@@ -106,7 +106,7 @@
   opacity: var(--card-opacity);
   background: radial-gradient(
     120% 120% at 0% 0%,
-    #ffffff33 0%,
+    #ffffff12 0%,
     #ffffff00 100%
   );
 }

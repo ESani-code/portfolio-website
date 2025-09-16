@@ -257,7 +257,7 @@ const TxtRotate = ({ text = "Hi, I'm Sani Eneojo Emmanuel" }) => {
   return (
     <h1 className="hero-heading">
       {words.map((word, i) => (
-        <span key={i} className="word" style={{ animationDelay: `${i * 150}ms` }}>
+        <span key={i} className="word" style={{ animationDelay: `${i * 180}ms` }}>
           {word}
         </span>
       ))}
