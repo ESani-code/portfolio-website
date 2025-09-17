@@ -118,7 +118,7 @@
 /* Targets the card specifically within your "About Me" section */
 .about-me-image .pc-card {
   /* Re-applying your custom styles */
-  border-radius: 30px; /* Your desired corner rounding */
+  border-radius: 20px; /* Your desired corner rounding */
   border: 4px solid #c12d2da0;
   box-shadow: 0 10px 20px rgba(29, 12, 12, 0.244);
   overflow: hidden; /* Ensures image respects the rounded corners */
@@ -129,7 +129,7 @@
   background: none;
 }
 
-/* Ensure your image itself fills the container without its own rounding */
+/* Ensure your image itself fills the container without its own rounding
 .about-me-image .avatar {
   border-radius: 0;
-}
+} */

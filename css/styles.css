@@ -490,7 +490,7 @@ main {
     font: 'ProductSansBlack', Roboto, sans-serif;
     font-size: 5rem;
     text-shadow: 0 0 80px #070707cb;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     line-height: 1;
 }
 
@@ -593,8 +593,7 @@ main {
 
 .about-me-image img {
     width: 100%;
-    border-radius: 30px; /* Creates the rounded rectangle */
-    border: 3px solid #c12d2da0;
+    border-radius: 10px; /* Creates the rounded rectangle */
     box-shadow: 0 10px 20px rgba(29, 12, 12, 0.244);
     display: block;
 }
@@ -746,6 +745,32 @@ main {
     object-fit: cover;
     border-radius: 5px;
 }
+
+
+/* --- Lazy Loading Image Styles --- */
+
+/* The initial state for our lazy images */
+.lazy-image {
+  /* Start with a heavy blur and scale it up slightly to hide pixelation */
+  filter: blur(20px);
+  transform: scale(1.1);
+  
+  /* Add a smooth transition for when the filter and transform are changed */
+  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+  
+  /* Ensure the image covers the container in its blurred state */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The state after the high-res image has loaded */
+.lazy-image.is-loaded {
+  /* Remove the blur and the scale */
+  filter: blur(0);
+  transform: scale(1);
+}
+
 
 /* MODIFICATION START: HIDE DEFAULT VIDEO CONTROLS */
 video::-webkit-media-controls {
@@ -1122,7 +1147,7 @@ footer .social-links img:hover {
     right: 0;
     margin: auto;
     width: 500px;
-    height: auto;
+    height: 625px;
     cursor: pointer;
     border: 3px solid #9a202073;
     border-radius: 8px;
@@ -1138,8 +1163,8 @@ footer .social-links img:hover {
 
 
 .coverflow-slide-js.active :hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transform: scale(1.015);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.518);
 }
 
 
@@ -1203,6 +1228,7 @@ footer .social-links img:hover {
 
     .coverflow-slide-js {
         width: 400px;
+        height: 500px;
     }
 
     .coverflow-nav button {
@@ -1304,18 +1330,23 @@ footer .social-links img:hover {
         display: none;
     }
 
+    .work-section {
+        overflow-x: hidden;
+    }
+
     .coverflow-container-js {
         height: 450px;
     }
 
     .coverflow-slide-js {
         width: 350px;
+        height: 437.5px;
     }
 
     .coverflow-nav button {
         font-size: 1rem;
         padding: 8px 10px;
-        margin: 20px 10px;
+        margin: 10px 10px;
     }
 
     .hero p > span {
@@ -1412,6 +1443,8 @@ footer .social-links img:hover {
 
     .work-section {
         padding: 2rem 0;
+        overflow-x: hidden;
+        height: auto;
     }
 
     .work-section h2 {
@@ -1444,12 +1477,13 @@ footer .social-links img:hover {
 
     .coverflow-slide-js {
         width: 250px;
+        height: 312.5px;
     }
 
     .coverflow-nav button {
         font-size: 1rem;
         padding: 8px 10px;
-        margin: 40px 10px;
+        margin: 20px 10px;
     }
 
     .hero p > span {
