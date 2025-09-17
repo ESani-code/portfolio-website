@@ -136,7 +136,7 @@ const InteractiveProfileImage = () => {
           <div className="pc-glare" />
           <img
             className="avatar"
-            src="images/me-pic.png"
+            src="images/me-pic.JPG"
             alt="A photo of Sani Eneojo Emmanuel"
           />
         </div>

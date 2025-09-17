@@ -3,6 +3,47 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
+// --- Lazy Loading Logic for High-Quality Images ---
+function lazyLoadImages() {
+    const lazyImages = [].slice.call(document.querySelectorAll("img.lazy-image"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+
+                    // When the high-res image finishes loading, add the 'is-loaded' class
+                    lazyImage.onload = () => {
+                        lazyImage.classList.add("is-loaded");
+                    };
+                    
+                    // Clean up: remove the class and stop observing the image
+                    lazyImage.classList.remove("lazy-image");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    } else {
+        // Fallback for older browsers
+        lazyImages.forEach(function(lazyImage) {
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.onload = () => {
+                lazyImage.classList.add("is-loaded");
+            };
+        });
+    }
+}
+
+// Now, we need to call this function AFTER the DOM is ready.
+document.addEventListener('DOMContentLoaded', lazyLoadImages);
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Custom Smooth Scrolling ---
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
@@ -126,6 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 let transform = '';
                 let zIndex = 0;
+
+
+                if (Math.abs(offset) <= 1 || offset === slides.length - 1) {
+                    const img = slide.querySelector('.lazy-image');
+                    if (img) {
+                        img.src = img.dataset.src;
+                        img.onload = () => img.classList.add('is-loaded');
+                        img.classList.remove('lazy-image'); // Prevent re-triggering
+                    }
+                }
 
                 if (offset === 0) {
                     transform = 'translateX(0) translateZ(0) rotateY(0deg)';
